@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1700502022 source:c:\users\g400\downloads\cobeñajoan_edd\main.cpp
+	<iostream>
+	"Operaciones.cpp"
+
+1700501030 c:\users\g400\downloads\cobeñajoan_edd\operaciones.h
+
+1700501983 c:\users\g400\downloads\cobeñajoan_edd\operaciones.cpp
+	<iostream>
+	"Operaciones.h"
+
