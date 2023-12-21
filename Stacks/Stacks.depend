@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1703035314 source:d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\node.cpp
+	"Node.h"
+
+1703035314 d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\node.h
+
+1703186786 source:d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\main.cpp
+	<iostream>
+	"Stack.h"
+	"Stacks_operations.h"
+	"validaciones.h"
+
+1703079464 d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\stack.h
+	"Node.h"
+
+1703202441 d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\stacks_operations.h
+	"Stack.cpp"
+	"Node.h"
+	<cmath>
+
+1701647703 d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\validaciones.h
+	<iostream>
+	<stdlib.h>
+	<conio.h>
+	<stdio.h>
+	<string.h>
+	<cstring>
+
+1703079466 d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\stack.cpp
+	"Stack.h"
+	"Node.cpp"
+	<iostream>
+
+1703035314 d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\node.cpp
+	"Node.h"
+
+1703079466 source:d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\stack.cpp
+	"Stack.h"
+	"Node.cpp"
+	<iostream>
+
+1703111419 d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\listasimple.h
+	"Nodo.h"
+
+1701441056 d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\nodo.h
+
+1701441056 source:d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\nodo.cpp
+	"Nodo.h"
+
+1703111310 source:d:\universidad\tercersemestre\estructuradedatos\codigo\stacks\listasimple.cpp
+	<iostream>
+	<string.h>
+	"ListaSimple.h"
+	"Nodo.h"
+
