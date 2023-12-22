@@ -1,3 +1,10 @@
+/***********************************************************************
+ UFA - ESPE
+ * Module:  Stack.cpp
+ * Author:  Joan Cobeña, Ruben Benavides
+ * Modified: jueves, 21 de diciembre de 2023
+ * Purpose: Implementacion de Pilas
+ ***********************************************************************/
 #include "Stack.h"
 #include "Node.cpp"
 #include <iostream>

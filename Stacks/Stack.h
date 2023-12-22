@@ -1,3 +1,11 @@
+/***********************************************************************
+ UFA - ESPE
+ * Module:  main.cpp
+ * Author:  Joan Cobeña, Ruben Benavides
+ * Modified: jueves, 21 de diciembre de 2023
+ * Purpose: Declaracion de Pilas
+ ***********************************************************************/
+
 #ifndef STACK_H_INCLUDED
 #define STACK_H_INCLUDED
 

@@ -1,3 +1,11 @@
+/***********************************************************************
+ UFA - ESPE
+ * Module:  Stack_operations.h
+ * Author:  Joan Cobeña
+ * Modified: jueves, 21 de diciembre de 2023
+ * Purpose: Operaciones con pilas
+ ***********************************************************************/
+
 #ifndef STACKS_OPERATIONS_H_INCLUDED
 #define STACKS_OPERATIONS_H_INCLUDED
 
@@ -8,12 +16,12 @@
 void reverse_stack_rec(Stack<int>* original_stack, Stack<int>* aux_stack1, Stack<int>* aux_stack2, bool is_reversed);
 void hanoi_stack_p(int n, Stack<int>* stack_A, Stack<int>* stack_B, Stack<int>* stack_C);
 void print_hanoi_stacks(Stack<int>* stack_A, Stack<int>* stack_B, Stack<int>* stack_C);
-void comb_primas_rec(int aux, Stack<int>* original_stack, Stack<int>* cont_stack, Stack<int>* aux_stack, int* cont_prim, int direccion);
-void contar_comb_primas(int valor, int *contador, bool paso, int valor_sin_prim, int grupos_desde);
-bool es_primo(int valor);
-int contar_cifras(int valor);
-int invertir_num(int num);
-void invertir_num_rec(int num, int* num_invertido, int num_cifras);
+void prime_comb_rec(int aux, Stack<int>* original_stack, Stack<int>* cont_stack, Stack<int>* aux_stack, int* cont_prim, int direction);
+void count_prime_comb(int value, int *contador, bool full_extracted, int cutted_first_digit, int min_digits_group_size);
+bool is_prime(int value);
+int count_digits(int value);
+int reverse_num(int num);
+void reverse_num_rec(int num, int* reversed_num, int digits_count);
 
 void hanoi_stack(int disks_number){
     Stack<int>* stack_A = new Stack<int>();
@@ -108,14 +116,14 @@ void reverse_stack_rec(Stack<int>* original_stack, Stack<int>* aux_stack1, Stack
  *
  * @param original_stack
  * @param cont_stack
- * @param direccion (> 0 cuenta los primos del numero original, si es <0 al inverso, == 0 ambos)
+ * @param direction (> 0 cuenta los primos del numero original, si es <0 al inverso, == 0 ambos)
  */
-void comb_primas(Stack<int>* original_stack, Stack<int>* cont_stack, int direccion){
+void comb_primes(Stack<int>* original_stack, Stack<int>* cont_stack, int direction){
     Stack<int>* aux_stack = new Stack<int>();
     cont_stack->remove_all();
     int cont_prim = 0;
 
-    comb_primas_rec(0, original_stack, cont_stack, aux_stack, &cont_prim, direccion);
+    prime_comb_rec(0, original_stack, cont_stack, aux_stack, &cont_prim, direction);
 
     while(!aux_stack->is_stack_void()){
         original_stack->aggregate(aux_stack->take_off());
@@ -126,69 +134,69 @@ void comb_primas(Stack<int>* original_stack, Stack<int>* cont_stack, int direcci
     printf("\n-----------------------\n");
 }
 
-void comb_primas_rec(int aux, Stack<int>* original_stack, Stack<int>* cont_stack, Stack<int>* aux_stack, int* cont_prim, int direccion){
+void prime_comb_rec(int aux, Stack<int>* original_stack, Stack<int>* cont_stack, Stack<int>* aux_stack, int* cont_prim, int direction){
     if(!original_stack->is_stack_void()){
         aux = original_stack->get_top()->get_value();
         aux_stack->aggregate(aux);
         *cont_prim = 0;
         printf("\n-----------------------");
 
-        if(direccion>0){
-            contar_comb_primas(aux, cont_prim, false, 0, 1);
+        if(direction>0){
+            count_prime_comb(aux, cont_prim, false, 0, 1);
         }
-        else if(direccion<0){
-            contar_comb_primas(invertir_num(aux), cont_prim, false, 0, 1);
+        else if(direction<0){
+            count_prime_comb(reverse_num(aux), cont_prim, false, 0, 1);
         }
         else{
-            contar_comb_primas(aux, cont_prim, false, 0, 1);
+            count_prime_comb(aux, cont_prim, false, 0, 1);
             printf("\nREGRESO");
-            contar_comb_primas(invertir_num(aux), cont_prim, false, 0, 2);
+            count_prime_comb(reverse_num(aux), cont_prim, false, 0, 2);
         }
 
         cont_stack->aggregate(*cont_prim);
         original_stack->remove_top();
-        comb_primas_rec(aux, original_stack, cont_stack, aux_stack, cont_prim, direccion);
+        prime_comb_rec(aux, original_stack, cont_stack, aux_stack, cont_prim, direction);
     }
 }
 
-void contar_comb_primas(int valor, int *contador, bool paso, int valor_sin_prim, int grupos_desde){
-    if(valor>int(pow(10, grupos_desde-1))){
-        if(!paso){
-            contar_comb_primas(valor/10, contador, paso, valor_sin_prim, grupos_desde);
+void count_prime_comb(int value, int *contador, bool full_extracted, int cutted_first_digit, int min_digits_group_size){
+    if(value>int(pow(10, min_digits_group_size-1))){
+        if(!full_extracted){
+            count_prime_comb(value/10, contador, full_extracted, cutted_first_digit, min_digits_group_size);
         }
 
-        if(es_primo(valor)){
-            printf("\n%d es primo", valor);
+        if(is_prime(value)){
+            printf("\n%d es primo", value);
             *contador = *contador + 1;
         }
 
 
-        valor_sin_prim = valor % int(pow(10, contar_cifras(valor)-1));
-        if(contar_cifras(valor)-1 > contar_cifras(valor_sin_prim)){
-            if(es_primo(valor_sin_prim)){
-                *contador = *contador + contar_cifras(valor)-contar_cifras(valor_sin_prim)-1;
+        cutted_first_digit = value % int(pow(10, count_digits(value)-1));
+        if(count_digits(value)-1 > count_digits(cutted_first_digit)){
+            if(is_prime(cutted_first_digit)){
+                *contador = *contador + count_digits(value)-count_digits(cutted_first_digit)-1;
             }
         }
 
-        contar_comb_primas(valor_sin_prim, contador, true, valor_sin_prim, grupos_desde);
+        count_prime_comb(cutted_first_digit, contador, true, cutted_first_digit, min_digits_group_size);
     }
 }
 
 
-bool es_primo(int valor){
+bool is_prime(int value){
     bool primo = true;
-    if (valor <= 1) {
+    if (value <= 1) {
         primo = false;
     }
-    else if(valor <= 3){
+    else if(value <= 3){
         primo = true;
     }
-    else if (valor % 2 == 0 || valor % 3 == 0) {
+    else if (value % 2 == 0 || value % 3 == 0) {
         primo = false;
     }
     else{
-        for (int i = 5; i * i <= valor; i += 6) {
-            if (valor % i == 0 || valor % (i + 2) == 0) {
+        for (int i = 5; i * i <= value; i += 6) {
+            if (value % i == 0 || value % (i + 2) == 0) {
                 primo = false;
                 break;
             }
@@ -198,28 +206,28 @@ bool es_primo(int valor){
     return primo;
 }
 
-int contar_cifras(int valor){
+int count_digits(int value){
     int contador = 0;
 
     do{
-        valor = valor/10;
+        value = value/10;
         contador ++;
-    }while(valor >= 1);
+    }while(value >= 1);
 
     return contador;
 }
 
-void invertir_num_rec(int num, int* num_invertido, int num_cifras){
+void reverse_num_rec(int num, int* reversed_num, int digits_count){
     if(num>0){
-        invertir_num_rec(num/10, num_invertido, num_cifras-1);
-        *num_invertido = *num_invertido + (num%10)*pow(10, num_cifras-1);
+        reverse_num_rec(num/10, reversed_num, digits_count-1);
+        *reversed_num = *reversed_num + (num%10)*pow(10, digits_count-1);
     }
 }
 
-int invertir_num(int num){
+int reverse_num(int num){
     if(num>0){
         int numero_invertido = 0;
-        invertir_num_rec(num, &numero_invertido, contar_cifras(num));
+        reverse_num_rec(num, &numero_invertido, count_digits(num));
         return numero_invertido;
     }
 }

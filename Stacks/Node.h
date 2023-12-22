@@ -1,3 +1,11 @@
+/***********************************************************************
+ UFA - ESPE
+ * Module:  Node.cpp
+ * Author:  Joan Cobeña, Ruben Benavides
+ * Modified: jueves, 21 de diciembre de 2023
+ * Purpose: Declaracion de Nodo
+ ***********************************************************************/
+
 #ifndef NODE_H_INCLUDED
 #define NODE_H_INCLUDED
 

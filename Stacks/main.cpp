@@ -1,3 +1,11 @@
+/***********************************************************************
+ UFA - ESPE
+ * Module:  main.cpp
+ * Author:  Joan Cobeña
+ * Modified: jueves, 21 de diciembre de 2023
+ * Purpose: Examen
+ ***********************************************************************/
+
 #include <iostream>
 #include "Stack.h"
 #include "Stacks_operations.h"
@@ -56,7 +64,7 @@ int main()
                 break;
             case 6:
                 system("cls");
-                comb_primas(&stack1, &cont_stack, 1);
+                comb_primes(&stack1, &cont_stack, 1);
                 printf("\n\nPila\n\n");
                 stack1.print();
                 printf("\nConteo Primos IZQ A DER\n\n");
@@ -66,7 +74,7 @@ int main()
                 break;
             case 7:
                 system("cls");
-                comb_primas(&stack1, &cont_stack, -1);
+                comb_primes(&stack1, &cont_stack, -1);
                 printf("\n\nPila\n\n");
                 stack1.print();
                 printf("\nConteo Primos DER A IZQ\n\n");
@@ -76,7 +84,7 @@ int main()
                 break;
             case 8:
                 system("cls");
-                comb_primas(&stack1, &cont_stack, 0);
+                comb_primes(&stack1, &cont_stack, 0);
                 printf("\n\nPila\n\n");
                 stack1.print();
                 printf("\nConteo Primos IDA Y VUELTA\n\n");
